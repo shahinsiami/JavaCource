@@ -1,0 +1,51 @@
+create database socialMedia
+-----------------
+create table tbl_users(
+	user_id int not null AUTO_INCREMENT,
+	name varchar(50) not null,
+	last_name varchar(50) not null,
+	user_name varchar(50) UNIQUE,
+	pass varchar(50) not null,
+	email varchar(50) not null,
+	country varchar(50),
+	primary key(user_id,user_name)
+)
+-----------------
+create table tbl_post(
+	username varchar(50) REFRENCES tbl_users(user_name),
+	post_txt text,
+	post_pic longblob,
+	sharing_date date DEAFAULT CURRENT_TIMESTAMP
+)
+-----------------
+create table tbl_follow(
+	username1 varchar(50) not null REFRENCES tbl_users(user_name),
+	user_name2 varchar(50) not null REFRENCES tbl_users(user_name)
+)
+-----------------
+create table tbl_comments(
+	username1 varchar(50) not null REFRENCES tbl_users(user_name),
+	user_name2 varchar(50) not null REFRENCES tbl_users(user_name)
+	post text,
+	post_date datetime,
+	comment_text varche(300),
+	comment_date datetime DEFAULT CURRENT(TIMESTAMP)
+)
+-----------------
+create table tbl_like_post(
+	username1 varchar(50) not null REFRENCES tbl_users(user_name),
+	user_name2 varchar(50) not null REFRENCES tbl_users(user_name)
+	post text not null,
+	like_date datetime DEFAULT CURRENT_TIMESTAMP
+)
+-----------------
+create table tbl_direct_messages(
+	username1 varchar(50) not null REFRENCES tbl_users(user_name),
+	user_name2 varchar(50) not null REFRENCES tbl_users(user_name)
+	message_txt text,
+	date datetime DEFAULT CURRENT_TIMESTAMP
+)
+-----------------
+-----------------
+-----------------
+-----------------
